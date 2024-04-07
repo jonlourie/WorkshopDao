@@ -22,10 +22,7 @@ const Propose: NextPage = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [classCreated, setClassCreated] = useState(false)
-  const [nftClassDescription, setNFTClassDescription] = useState('')
-  const [nfts, setNfts] = useState<{ classId: string; id: string, uri: string, uriHash: string, owner: string }[]>([])
   const [transferID, setTransferID] = useState("")
-  const [recipientAddress, setRecipientAddress] = useState('')
 
   useEffect(() => {
     if (!signingClient || walletAddress.length === 0) {
@@ -51,10 +48,10 @@ const Propose: NextPage = () => {
     // Hardcoded amount, represented as a string to match the Uint128 format expected by the contract
     //const amount = "1"; // This is just a placeholder
 
-    const title1 = "Your Proposal Title";
-    const description1 = "Your detailed proposal description";
-    const recipient = "testcore1xhvglxz55w0uy73t5lxhypt8leud9wsd92ccjq"; // Optional recipient address
-    const amount = "123456789"; // Optional amount as string to match Uint128 format
+    //const title1 = "Your Proposal Title";
+    //const description1 = "Your detailed proposal description";
+    //const recipient = "testcore1xhvglxz55w0uy73t5lxhypt8leud9wsd92ccjq"; // Optional recipient address
+    //const amount = "123456789"; // Optional amount as string to match Uint128 format
   
     if (!walletAddress) {
       console.error('Wallet address is empty.');
@@ -66,8 +63,8 @@ const Propose: NextPage = () => {
         propose: {
           title,
           description,
-          recipient: recipient ? recipient : undefined, // Include only if recipient is provided
-          amount: amount ? { amount, denom: "utest" } : undefined,
+          //recipient: recipient ? recipient : undefined, // Include only if recipient is provided
+          //amount: amount ? { amount, denom: "utest" } : undefined,
         }
       };
   

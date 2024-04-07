@@ -18,7 +18,6 @@ const Vote: NextPage = () => {
   const [balance, setBalance] = useState('')
   const [loadedAt, setLoadedAt] = useState(new Date())
   const [loading, setLoading] = useState(false)
-  const [recipientAddress, setRecipientAddress] = useState('')
   const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
 
@@ -132,7 +131,8 @@ const Vote: NextPage = () => {
   const queryProposal = async (proposalId) => {
     if (!cwClient) return;
     try {
-      const queryMsg = { get_proposal: { proposal_id: 0 } };
+      const queryMsg = { get_proposal: { proposal_id: parseInt(proposalId, 10) } };
+      //const queryMsg = { get_proposal: { proposal_id: 0 } };
       const response = await cwClient.queryContractSmart(contractAddress, queryMsg);
       console.log('Query Response:', response);
 
@@ -154,13 +154,21 @@ const Vote: NextPage = () => {
       return;
     }
   
-    try {
-      const executeMsg = { 
-        vote: { 
-          proposal_id: proposalId, 
-          approve 
-        } 
-      };
+    //try {
+      //const executeMsg = { 
+        //vote: { 
+          //proposal_id: 0, 
+          //approve: true
+        //} 
+      //};
+
+      try {
+        const executeMsg = { 
+            vote: { 
+                proposal_id: parseInt(proposalId, 10), // Ensure proposalId is an integer
+                approve: approve // Use the dynamic approve value
+            } 
+        };
   
     const response = await signingClient?.execute(walletAddress, contractAddress, executeMsg, fee);
   
